@@ -11,20 +11,9 @@
 class Admin {
 
 	/**
-	 * This variable is used to store the object of the settingsApi class.
-	 *
-	 * @var object
-	 */
-	public $settings;
-
-	/**
 	 * This is the constructor of admin class.
 	 */
 	public function __construct() {
-
-		require_once OOP_PLUGIN_PATH . 'inc/api/class-settingsapi.php';
-		$this->settings = new SettingsApi();
-
 	}
 
 	/**

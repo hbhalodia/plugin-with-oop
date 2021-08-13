@@ -25,11 +25,15 @@ final class Init {
 		require_once OOP_PLUGIN_PATH . 'inc/pages/class-admin.php';
 		require_once OOP_PLUGIN_PATH . 'inc/base/class-enqueue.php';
 		require_once OOP_PLUGIN_PATH . 'inc/base/class-settingslink.php';
+		require_once OOP_PLUGIN_PATH . 'inc/cpt/class-movie.php';
+		require_once OOP_PLUGIN_PATH . 'inc/cpt/class-person.php';
 
 		return array(
 			Admin::class,
 			Enqueue::class,
 			SettingsLink::class,
+			Movie::class,
+			Person::class,
 		);
 	}
 
