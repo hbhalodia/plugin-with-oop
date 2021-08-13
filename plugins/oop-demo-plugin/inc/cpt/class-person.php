@@ -121,12 +121,66 @@ class Person {
 		);
 	}
 
-	public function ml_person_updated_messages() {
+	/**
+	 * Sets the post updated messages for the `person` post type.
+	 *
+	 * @param  array $messages Post updated messages.
+	 * @return array Messages for the `person` post type.
+	 */
+	public function ml_person_updated_messages( $messages ) {
+		global $post;
 
+		$permalink = get_permalink( $post );
+
+		$messages['person'] = array(
+			0  => '', // Unused. Messages start at index 1.
+			/* translators: %s: post permalink */
+			1  => sprintf( __( 'Person updated. <a target="_blank" href="%s">View Person</a>', 'movie-library-plugin' ), esc_url( $permalink ) ),
+			2  => __( 'Custom field updated.', 'movie-library-plugin' ),
+			3  => __( 'Custom field deleted.', 'movie-library-plugin' ),
+			4  => __( 'Person updated.', 'movie-library-plugin' ),
+			/* translators: %s: date and time of the revision */
+			5  => isset( $_GET['revision'] ) ? sprintf( __( 'Person restored to revision from %s', 'movie-library-plugin' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false, // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			/* translators: %s: post permalink */
+			6  => sprintf( __( 'Person published. <a href="%s">View person</a>', 'movie-library-plugin' ), esc_url( $permalink ) ),
+			7  => __( 'Person saved.', 'movie-library-plugin' ),
+			/* translators: %s: post permalink */
+			8  => sprintf( __( 'Person submitted. <a target="_blank" href="%s">Preview person</a>', 'movie-library-plugin' ), esc_url( add_query_arg( 'preview', 'true', $permalink ) ) ),
+			/* translators: 1: Publish box date format, see https://secure.php.net/date 2: Post permalink */
+			9  => sprintf( __( 'Person scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview person</a>', 'movie-library-plugin' ), date_i18n( __( 'M j, Y @ G:i', 'movie-library-plugin' ), strtotime( $post->post_date ) ), esc_url( $permalink ) ),
+			/* translators: %s: post permalink */
+			10 => sprintf( __( 'Person draft updated. <a target="_blank" href="%s">Preview person</a>', 'movie-library-plugin' ), esc_url( add_query_arg( 'preview', 'true', $permalink ) ) ),
+		);
+
+		return $messages;
 	}
 
-	public function ml_person_bulk_updated_messages() {
+	/**
+	 * Sets the bulk post updated messages for the `person` post type.
+	 *
+	 * @param  array $bulk_messages Arrays of messages, each keyed by the corresponding post type. Messages are
+	 *                              keyed with 'updated', 'locked', 'deleted', 'trashed', and 'untrashed'.
+	 * @param  int[] $bulk_counts   Array of item counts for each message, used to build internationalized strings.
+	 * @return array Bulk messages for the `person` post type.
+	 */
+	public function ml_person_bulk_updated_messages( $bulk_messages, $bulk_counts ) {
+		global $post;
 
+		$bulk_messages['person'] = array(
+			/* translators: %s: Number of person. */
+			'updated'   => _n( '%s person updated.', '%s person updated.', $bulk_counts['updated'], 'movie-library-plugin' ),
+			'locked'    => ( 1 === $bulk_counts['locked'] ) ? __( '1 person not updated, somebody is editing it.', 'movie-library-plugin' ) :
+							/* translators: %s: Number of person. */
+							_n( '%s person not updated, somebody is editing it.', '%s person not updated, somebody is editing them.', $bulk_counts['locked'], 'movie-library-plugin' ),
+			/* translators: %s: Number of person. */
+			'deleted'   => _n( '%s person permanently deleted.', '%s person permanently deleted.', $bulk_counts['deleted'], 'movie-library-plugin' ),
+			/* translators: %s: Number of person. */
+			'trashed'   => _n( '%s person moved to the Trash.', '%s person moved to the Trash.', $bulk_counts['trashed'], 'movie-library-plugin' ),
+			/* translators: %s: Number of person. */
+			'untrashed' => _n( '%s person restored from the Trash.', '%s person restored from the Trash.', $bulk_counts['untrashed'], 'movie-library-plugin' ),
+		);
+
+		return $bulk_messages;
 	}
 
 }
