@@ -35,7 +35,8 @@ abstract class Base {
 		/**
 		 * Actions
 		 */
-		add_action( 'init', [ $this, 'register_post_type' ] );
+		add_action( 'init', array( $this, 'register_post_type' ) );
+		add_action( 'publish_person', array( $this, 'create_person_taxonomy_term' ), 10, 2 );
 
 	}
 
@@ -51,10 +52,10 @@ abstract class Base {
 		}
 
 		$args = $this->get_args();
-		$args = ( ! empty( $args ) && is_array( $args ) ) ? $args : [];
+		$args = ( ! empty( $args ) && is_array( $args ) ) ? $args : array();
 
 		$labels = $this->get_labels();
-		$labels = ( ! empty( $labels ) && is_array( $labels ) ) ? $labels : [];
+		$labels = ( ! empty( $labels ) && is_array( $labels ) ) ? $labels : array();
 
 		if ( ! empty( $labels ) && is_array( $labels ) ) {
 			$args['labels'] = $labels;
@@ -73,13 +74,13 @@ abstract class Base {
 	 */
 	public function get_args() {
 
-		return [
+		return array(
 			'show_in_rest'  => true,
 			'public'        => true,
 			'has_archive'   => true,
 			'menu_position' => 6,
-			'supports'      => [ 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ],
-		];
+			'supports'      => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
+		);
 
 	}
 
@@ -100,4 +101,16 @@ abstract class Base {
 	 */
 	abstract public function get_labels();
 
+	/**
+	 * Function to call when new person post is created.
+	 *
+	 * @param int     $post_id post Id of the current post.
+	 * @param WP_Post $post WP_Post object.
+	 * @return void
+	 */
+	public function create_person_taxonomy_term( $post_id, $post ) {
+
+		wp_insert_term( 'person-' . $post->ID, 'person-tax' );
+
+	}
 }

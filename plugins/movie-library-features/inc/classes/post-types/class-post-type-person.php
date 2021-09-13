@@ -33,7 +33,7 @@ class Post_Type_Person extends Base {
 	 */
 	public function get_labels() {
 
-		return [
+		return array(
 			'name'               => _x( 'Person', 'post type general name', 'movie-library-features' ),
 			'singular_name'      => _x( 'Person', 'post type singular name', 'movie-library-features' ),
 			'menu_name'          => _x( 'Person', 'admin menu', 'movie-library-features' ),
@@ -48,7 +48,7 @@ class Post_Type_Person extends Base {
 			'parent_item_colon'  => __( 'Parent Person:', 'movie-library-features' ),
 			'not_found'          => __( 'No Person found.', 'movie-library-features' ),
 			'not_found_in_trash' => __( 'No Person found in Trash.', 'movie-library-features' ),
-		];
+		);
 
 	}
 
