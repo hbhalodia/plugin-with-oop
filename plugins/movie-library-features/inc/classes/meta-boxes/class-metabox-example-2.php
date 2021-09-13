@@ -107,7 +107,7 @@ class Metabox_Example_2 {
 	 */
 	public function render_meta_box() {
 
-		$template = sprintf( '%s/templates/metabox-example.php', untrailingslashit( MOVIE_LIBRARY_FEATURES_PATH ) );
+		$template = sprintf( '%s/templates/metabox/metabox-example.php', untrailingslashit( MOVIE_LIBRARY_FEATURES_PATH ) );
 		require_once $template;
 	}
 

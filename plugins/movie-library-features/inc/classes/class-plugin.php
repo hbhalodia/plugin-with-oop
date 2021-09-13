@@ -26,6 +26,7 @@ class Plugin {
 		Post_Types::get_instance();
 		Taxonomies::get_instance();
 		Meta_Boxes::get_instance();
+		Shortcodes::get_instance();
 		Widgets::get_instance();
 		Rewrite::get_instance();
 		Plugin_Configs::get_instance();
