@@ -66,6 +66,10 @@ class Post_Type_Person extends Base {
 			'has_archive'   => true,
 			'menu_icon'     => 'dashicons-admin-users',
 			'menu_position' => 6,
+			'rewrite'       => array(
+				'slug'       => 'person/%career%/%postname%-%post_id%',
+				'with_front' => true,
+			),
 			'supports'      => array( 'title', 'editor', 'excerpt', 'thumbnail', 'author' ),
 		);
 

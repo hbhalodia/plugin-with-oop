@@ -66,6 +66,10 @@ class Post_Type_Movie extends Base {
 			'has_archive'   => true,
 			'menu_icon'     => 'dashicons-button',
 			'menu_position' => 6,
+			'rewrite'       => array(
+				'slug'       => 'movie/%genre%/%postname%-%post_id%',
+				'with_front' => true,
+			),
 			'supports'      => array( 'title', 'editor', 'excerpt', 'thumbnail', 'author', 'comments' ),
 		);
 
