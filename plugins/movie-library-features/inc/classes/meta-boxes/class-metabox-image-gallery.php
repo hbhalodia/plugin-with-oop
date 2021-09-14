@@ -1,6 +1,6 @@
 <?php
 /**
- * Movie post - Movie Information meta box.
+ * Custom post Type - Image Gallery Meta box.
  *
  * @package movie-library-features
  */
@@ -8,25 +8,26 @@
 namespace Movie_Library\Features\Inc\Meta_Boxes;
 
 use Movie_Library\Features\Inc\Post_Types\Post_Type_Movie;
+use Movie_Library\Features\Inc\Post_Types\Post_Type_Person;
 
 /**
- * Class Metabox_MovieInformation
+ * Class Metabox_Image_Gallery
  */
-class Metabox_MovieInformation extends Base {
+class Metabox_Image_Gallery extends Base {
 
 	/**
 	 * Meta box slug.
 	 *
 	 * @var string Meta box slug.
 	 */
-	const SLUG = 'movie-information';
+	const SLUG = 'ml-image-gallery';
 
 	/**
 	 * Meta box label.
 	 *
 	 * @var string Meta box label.
 	 */
-	const LABEL = 'Basic Movie Information';
+	const LABEL = 'Image Gallery';
 
 	/**
 	 * Context of meta box.
@@ -54,34 +55,13 @@ class Metabox_MovieInformation extends Base {
 	public function get_fields( $post_type = '' ) {
 
 		return array(
-			'movie_rating'       => new \Fieldmanager_Select(
+			'image' => new \Fieldmanager_Media(
 				array(
-					'name'    => 'movie_rating',
-					'label'   => __( 'Enter Movie Rating', 'movie-library-features' ),
-					'options' => array(
-						''  => __( 'Choose Rating', 'movie-library-features' ),
-						'1' => '1',
-						'2' => '2',
-						'3' => '3',
-						'4' => '4',
-						'5' => '5',
-					),
-				)
-			),
-			'movie_runtime'      => new \Fieldmanager_TextField(
-				array(
-					'name'  => 'movie_runtime',
-					'label' => __( 'Enter Movie Runtime : ', 'movie-library-features' ),
-				)
-			),
-			'movie_release_date' => new \Fieldmanager_Datepicker(
-				array(
-					'name'  => 'movie_release_date',
-					'label' => __( 'Enter Release Date : ', 'movie-library-features' ),
+					'label'     => 'Select Image',
+					'mime_type' => 'image',
 				)
 			),
 		);
-
 	}
 
 	/**
@@ -93,6 +73,7 @@ class Metabox_MovieInformation extends Base {
 
 		return array(
 			Post_Type_Movie::SLUG,
+			Post_Type_Person::SLUG,
 		);
 
 	}

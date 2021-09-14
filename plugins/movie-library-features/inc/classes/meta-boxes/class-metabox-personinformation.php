@@ -10,7 +10,7 @@ namespace Movie_Library\Features\Inc\Meta_Boxes;
 use Movie_Library\Features\Inc\Post_Types\Post_Type_Person;
 
 /**
- * Class Metabox_Example
+ * Class Metabox_PersonInformation
  */
 class Metabox_PersonInformation extends Base {
 
