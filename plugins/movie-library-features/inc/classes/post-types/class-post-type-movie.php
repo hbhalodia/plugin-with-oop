@@ -60,17 +60,19 @@ class Post_Type_Movie extends Base {
 	public function get_args() {
 
 		return array(
-			'show_in_rest'  => true,
-			'hierarchical'  => false,
-			'public'        => true,
-			'has_archive'   => true,
-			'menu_icon'     => 'dashicons-button',
-			'menu_position' => 6,
-			'rewrite'       => array(
+			'show_in_rest'    => true,
+			'hierarchical'    => false,
+			'public'          => true,
+			'has_archive'     => true,
+			'menu_icon'       => 'dashicons-button',
+			'menu_position'   => 6,
+			'capability_type' => array( 'ml_custom_post', 'ml_custom_posts' ),
+			'map_meta_cap'    => true,
+			'rewrite'         => array(
 				'slug'       => 'movie/%genre%/%postname%-%post_id%',
 				'with_front' => true,
 			),
-			'supports'      => array( 'title', 'editor', 'excerpt', 'thumbnail', 'author', 'comments' ),
+			'supports'        => array( 'title', 'editor', 'excerpt', 'thumbnail', 'author', 'comments' ),
 		);
 
 	}

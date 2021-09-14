@@ -63,6 +63,12 @@ class Taxonomy_Person extends Base {
 			'show_admin_column' => true,
 			'query_var'         => true,
 			'show_in_rest'      => true,
+			'capabilities'      => array(
+				'manage_terms' => 'manage_movie_taxonomy',
+				'edit_terms'   => 'edit_movie_taxonomy',
+				'delete_terms' => 'delete_movie_taxonomy',
+				'assign_terms' => 'assign_movie_taxonomy',
+			),
 		);
 
 	}
