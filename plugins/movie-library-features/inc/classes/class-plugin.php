@@ -27,6 +27,7 @@ class Plugin {
 		Taxonomies::get_instance();
 		Meta_Boxes::get_instance();
 		Shortcodes::get_instance();
+		Dashboard_Widgets::get_instance();
 		Widgets::get_instance();
 		Rewrite::get_instance();
 		Plugin_Configs::get_instance();
