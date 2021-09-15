@@ -29,8 +29,9 @@ class Plugin {
 		Shortcodes::get_instance();
 		Dashboard_Widgets::get_instance();
 		Roles_And_Capabilities::get_instance();
-		Widgets::get_instance();
 		Rewrite::get_instance();
+		Settings::get_instance();
+		Widgets::get_instance();
 		Plugin_Configs::get_instance();
 		SEO::get_instance();
 		Blocks::get_instance();
