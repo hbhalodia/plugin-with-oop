@@ -31,6 +31,7 @@ class Plugin {
 		Roles_And_Capabilities::get_instance();
 		Rewrite::get_instance();
 		Settings::get_instance();
+		Custom_WP_CLI::get_instance();
 		Widgets::get_instance();
 		Plugin_Configs::get_instance();
 		SEO::get_instance();
