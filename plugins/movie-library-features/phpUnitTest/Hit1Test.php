@@ -1,7 +1,7 @@
-<?php declare(strict_types=1);
+<?php 
 use PHPUnit\Framework\TestCase;
 
-final class EmailTest extends TestCase {
+final class Hit1Test extends TestCase {
 
 	public function testCanBeCreatedFromValidEmailAddress(): void {
 		$this->assertInstanceOf(
@@ -22,4 +22,5 @@ final class EmailTest extends TestCase {
 			Email::fromString( 'user@example.com' )
 		);
 	}
+
 }
